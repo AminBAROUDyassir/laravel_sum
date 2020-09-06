@@ -11,7 +11,7 @@ class string_replace extends Command
      *
      * @var string
      */
-    protected $signature = 'run:string_replace {form} {args1} {args2}';
+    protected $signature = 'run:string_replace {args*} ';
 
     /**
      * The console command description.
@@ -41,28 +41,62 @@ class string_replace extends Command
     public function handle()
     {
 
-        $form = $this->argument("form");
-        $args1 = $this->argument("args1");
-        $args2 = $this->argument("args2");
+        $array = $this->argument('args');
 
-        $final_result = self::str_replace($form, $args1, $args2);
-
-        //info($final_result);
+        $final_result = self::str_replace($array);
         $this->info($final_result);
     }
 
-    public function str_replace($form, $args1, $args2)
+    public function str_replace($array)
     {
+        if (count($array) > 1) {
 
-        $get_form = explode("_", $form);
+            $get_form = explode("_", $array[0]);
 
-        $first = (int) filter_var($get_form[0], FILTER_SANITIZE_NUMBER_INT);
-        $second = (int) filter_var($get_form[1], FILTER_SANITIZE_NUMBER_INT);
+            $i = 0;
+            $arr_ints = [];
 
-        if ($first > $second) {
-            return $args2 . "_" . $args1;
-        } else {
-            return $args1 . "_" . $args2;
+            foreach ($get_form as $element) {
+
+                $val = filter_var($element, FILTER_SANITIZE_NUMBER_INT);
+
+                if (is_numeric($val)) {
+                    $arr_vals[$i] = $val;
+                } else {
+                    $arr_vals[$i] = $element;
+                }
+                $i++;
+            }
+
+            //asort($arr_vals);
+            info($arr_vals);
+
+            $j = 0;
+            $result = "";
+            foreach ($arr_vals as $x => $x_value) {
+
+                if (is_numeric($x_value)) {
+
+                    if ($j == 0) {
+                        $result = $array[$x_value + 1];
+                    } else {
+                        $result = $result . "_" . $array[$x_value + 1];
+                    }
+
+                } else {
+
+                    if ($j == 0) {
+                        $result = $x_value;
+                    } else {
+                        $result = $result . "_" . $x_value;
+                    }
+
+                }
+                $j++;
+            }
+
+            return $result;
+
         }
 
     }
