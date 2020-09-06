@@ -77,10 +77,16 @@ class string_replace extends Command
 
                 if (is_numeric($x_value)) {
 
-                    if ($j == 0) {
-                        $result = $array[$x_value + 1];
+                    if (!isset($array[$x_value + 1])) {
+                        $value = "";
                     } else {
-                        $result = $result . "_" . $array[$x_value + 1];
+                        $value = $array[$x_value + 1];
+                    }
+
+                    if ($j == 0) {
+                        $result = $value;
+                    } else {
+                        $result = $result . "_" . $value;
                     }
 
                 } else {
