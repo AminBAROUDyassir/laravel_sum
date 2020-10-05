@@ -55,7 +55,7 @@ class AuthController extends Controller
         ]);
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
-            return response()->json([
+            return response()->json(['success' => false,
                 'message' => 'Unauthorized',
             ], 401);
         }
@@ -69,6 +69,7 @@ class AuthController extends Controller
 
         $token->save();
         return response()->json([
+            'success' => true,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
