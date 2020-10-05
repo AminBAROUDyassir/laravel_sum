@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Coupon;
 use App\Event;
+use App\Helpers\Helper;
 use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class CouponController extends Controller
             $coupon = Coupon::find($coupon_id);
 
             $event = Event::where('event_id', $coupon->event_id)->first();
+            $event->picture_event = Helper::get_url_picture($event->picture_event, "/uploads/");
 
             $details = [
                 'title' => 'Mail from ItSolutionStuff.com',
@@ -186,6 +188,7 @@ class CouponController extends Controller
                     'event.picture_event',
                     'event.status as status_event', )->first();
             if ($coupon != null) {
+                $coupon->picture_event = Helper::get_url_picture($coupon->picture_event, "/uploads/");
 
                 $response_array = ['success' => true, 'data' => $coupon, 'code' => "100"];
 
