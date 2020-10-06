@@ -24,6 +24,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('users', 'AuthController@user');
 
     Route::get('/coupon/get/{code}', 'CouponController@get_coupon');
-    Route::post('/coupon/update', 'CouponController@update_coupon');
+    Route::post('/coupon/update_coupon', 'CouponController@update_coupon');
 
 });
