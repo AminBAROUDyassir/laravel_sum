@@ -220,7 +220,7 @@ class CouponController extends Controller
             $coupon = Coupon::where('id', $request->coupon_id)->first();
 
             info("coupon _id  :" . $request->coupon_id);
-            info($request->all());
+            info($request);
             if ($coupon == null) {
                 $response_array = ['success' => false, 'error_messages' => 'no data', 'error_code' => "404"];
 
