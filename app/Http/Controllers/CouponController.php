@@ -187,6 +187,9 @@ class CouponController extends Controller
                     'event.message_event',
                     'event.picture_event',
                     'event.status as status_event', )->first();
+            info("-------- data from coupon start -------------");
+            info($coupon);
+            info("-------- data from coupon end -------------");
             if ($coupon != null) {
                 $coupon->picture_event = Helper::get_url_picture($coupon->picture_event, "/uploads/");
 
