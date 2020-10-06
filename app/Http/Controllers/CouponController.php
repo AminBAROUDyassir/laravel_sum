@@ -195,9 +195,6 @@ class CouponController extends Controller
             if ($coupon != null) {
                 $coupon->picture_event = Helper::get_url_picture($coupon->picture_event, "/uploads/");-
                 $response_array = ['success' => true, 'data' => $coupon, 'code' => "100"];
-                info("-------- data from coupon not null start -------------");
-                info($coupon);
-                info("-------- data from coupon not null end -------------");
                 return response()->json($response_array);
             } else {
                 $response_array = ['success' => false, 'error_messages' => 'no data', 'error_code' => "404"];
