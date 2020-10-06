@@ -173,7 +173,9 @@ class CouponController extends Controller
 
     public function get_coupon($code)
     {
-
+        info("-------- data from code start -------------");
+        info($code);
+        info("-------- data from code end -------------");
         try {
             $coupon = Coupon::where('code', $code)->leftjoin('event', 'coupons.event_id', '=', 'event.event_id')
                 ->select('coupons.id as coupon_id',
