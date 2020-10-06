@@ -8,6 +8,7 @@
     <p>{{ $details['body'] }}</p>
     <p>{{ $details['picture'] }}</p>
 
+    <img src="{{ $message->embed($details['picture']) }}" alt="" />
     <img src="{{ $message->embed("data:image/png;base64,".DNS1D::getBarcodePNG($details['barcode'], 'C39' ,2,50) ) }}" alt="" />
    
     <p>Thank you</p>
