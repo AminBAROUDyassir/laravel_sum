@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body" style="text-align:center;">
       
-    <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($details['barcode'], 'QRCODE')}}" alt="barcode"   />
+    <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($coupon->code, 'QRCODE') }}" alt="barcode"   />
             </div>
         </div>
     </div>
