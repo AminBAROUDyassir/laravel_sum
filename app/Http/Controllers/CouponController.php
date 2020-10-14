@@ -154,7 +154,7 @@ class CouponController extends Controller
 
                 $Coupon = new Coupon();
                 $Coupon->event_id = $event_id;
-                $Coupon->code = rand();
+                $Coupon->code = "YMC-" . rand();
                 $Coupon->status = 0;
                 $Coupon->save();
             }
