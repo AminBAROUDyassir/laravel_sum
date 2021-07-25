@@ -353,10 +353,10 @@
 
                         <div style="min-height:400px;text-align:center;" >
     
-                        <div style="position:absolute;top:0px;" >
+                        <div style="position:relative;top:0px;" >
                             <img src="{{ $message->embed($details['path'] )}}" width="600" alt="" />
                         </div>
-                        <div style="position:absolute;bottom:0px;" >
+                        <div style="position:relative;bottom:0px;" >
                             <img src="{{ $message->embed( public_path() .DNS2D::getBarcodePNGPath($details['barcode'], 'QRCODE')  ) }}" style="background-color:white;" width="150" alt="" />
                         </div>
                             <p>code coupon : <strong>{{ $details['barcode'] }}</strong></p>
