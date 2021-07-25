@@ -51,7 +51,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{{url('/vendor/add')}}" > 
+                    <form method="post" enctype="multipart/form-data" action="{{url('/admin/vendor/add')}}" > 
                         {{csrf_field()}}
                     @if($new ==false)
                             <input type="text" class="form-control" name="user_id" id="nuser_idame" value="{{$user_id}}">

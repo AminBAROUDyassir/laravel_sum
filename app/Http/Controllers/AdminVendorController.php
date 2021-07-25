@@ -9,7 +9,7 @@ use App\VendorUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class VendorController extends Controller
+class AdminVendorController extends Controller
 {
     public function index(Request $request)
     {
@@ -23,13 +23,13 @@ class VendorController extends Controller
             'users.status',
             'user_info.created_at')->get();
 
-        return view('vendor.index', ["vendors" => $vendors]);
+        return view('admin.vendor.index', ["vendors" => $vendors]);
     }
     public function add()
     {
         $new = true;
 
-        return view("vendor.add", ["new" => $new]);
+        return view("admin.vendor.add", ["new" => $new]);
 
     }
 
@@ -44,7 +44,7 @@ class VendorController extends Controller
                 $User->name = $request->name;
                 $User->email = $request->email;
                 if (isset($request->password)) {
-                    $User->password = $request->password;
+                    $User->password = Hash::make($request->password);
                 }
 
                 $User->save();
@@ -102,7 +102,7 @@ class VendorController extends Controller
             'users.status',
             'user_info.created_at')->first();
 
-        return view('vendor.edit', ["vendor" => $vendor, "new" => $new, "user_id" => $vendor_id]);
+        return view('admin.vendor.edit', ["vendor" => $vendor, "new" => $new, "user_id" => $vendor_id]);
 
     }
 
@@ -171,7 +171,7 @@ class VendorController extends Controller
             'users.status',
             'user_info.created_at')->
             get();
-        return view('vendor.users.index', ["VendorUser" => $VendorUser, "vendor" => $vendor]);
+        return view('admin.vendor.users.index', ["VendorUser" => $VendorUser, "vendor" => $vendor]);
 
     }
 
@@ -180,7 +180,7 @@ class VendorController extends Controller
 
         $new = true;
 
-        return view('vendor.users.add', ["new" => $new]);
+        return view('admin.vendor.users.add', ["new" => $new]);
     }
 
     public function add_vendor_users_save(Request $request)
@@ -195,7 +195,7 @@ class VendorController extends Controller
                 $User->name = $request->name;
                 $User->email = $request->email;
                 if (isset($request->password)) {
-                    $User->password = $request->password;
+                    $User->password = Hash::make($request->password);
                 }
 
                 $User->save();
@@ -258,7 +258,7 @@ class VendorController extends Controller
             'users.status',
             'user_info.created_at')->first();
 
-        return view('vendor.users.edit', ["user" => $user, "new" => $new, "user_id" => $user_id]);
+        return view('admin.vendor.users.edit', ["user" => $user, "new" => $new, "user_id" => $user_id]);
 
     }
 

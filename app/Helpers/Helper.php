@@ -52,6 +52,17 @@ class Helper
         return Helper::web_url() . $path . "images/50x40.png";
     }
 
+    public static function get_path_picture($picture, $path)
+    {
+
+        if (file_exists(public_path() . $path . basename($picture))) {
+
+            return public_path() . $path . basename($picture);
+
+        }
+        return public_path() . "/images/50x40.png";
+    }
+
     public static function file_name($prefix = "")
     {
 

@@ -187,7 +187,7 @@
 
                      <li class="nav-header">LIFE CYCLE</li>
                      <li class="nav-item">
-                        <a href="{{url('/admin/home')}}" class="nav-link">
+                        <a href="{{url('/vendor/home')}}" class="nav-link">
                                  <i class="nav-icon fas fa-th"></i>
                                  <p>
                                    Home
@@ -197,24 +197,18 @@
                              </li>
                     <li class="nav-header">USERS</li> 
 
-                     <li class="nav-item">
-                     <a href="{{url('/admin/vendor/index')}}" class="nav-link">
-                              <i class="nav-icon fas fa-th"></i>
-                              <p>
-                                Liste Vendors
-                                <span class="right badge badge-danger">New</span>
-                              </p>
-                            </a>
-                          </li>
+                     
 
                           <li class="nav-item has-treeview">
-                            <a href="{{url('/admin/event/index')}}" class="nav-link">
+                            <a href="{{url('/event/index')}}" class="nav-link">
                               <i class="nav-icon fas fa-chart-pie"></i>
                               <p>
                                Liste Events
                               </p>
                             </a>
-                      </li>                         
+                      </li>
+
+
 
                             <li class="nav-header">OTHER ACTIONS</li>
       

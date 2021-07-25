@@ -51,7 +51,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{{url('/event/add')}}" > 
+                    <form method="post" enctype="multipart/form-data" action="{{url('/admin/event/add')}}" > 
                         {{csrf_field()}}
 
                         <div class="form-group">

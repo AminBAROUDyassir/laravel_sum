@@ -8,7 +8,7 @@ use App\Helpers\Helper;
 use App\Vendor;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class VendorEventController extends Controller
 {
     public function index()
     {
@@ -20,12 +20,12 @@ class EventController extends Controller
             $Event->picture_event = Helper::get_url_picture($Event->picture_event, "/uploads/");
         }
 
-        return view("event.index", ["event_info" => $EventInfo]);
+        return view("vendor.event.index", ["event_info" => $EventInfo]);
     }
 
     public function add()
     {
-        return view("event.add");
+        return view("vendor.event.add");
     }
 
     public function add_event(Request $request)
@@ -89,7 +89,7 @@ class EventController extends Controller
 
         $EventInfo->date_event = $date[0];
 
-        return view('event.edit', ["event" => $EventInfo, "event_id" => $event_id]);
+        return view('vendor.event.edit', ["event" => $EventInfo, "event_id" => $event_id]);
 
     }
 
@@ -147,7 +147,7 @@ class EventController extends Controller
 
         $event = Event::where('event_id', $event_id)->first();
 
-        return view("event.link", ["vendors" => $vendors, 'event' => $event, 'event_id' => $event_id]);
+        return view("vendor.event.link", ["vendors" => $vendors, 'event' => $event, 'event_id' => $event_id]);
     }
 
     public function change($event_id)
@@ -169,7 +169,7 @@ class EventController extends Controller
 
         $event = Event::where('event_id', $event_id)->first();
 
-        return view("event.link", ["vendors" => $vendors, 'event' => $event, 'event_id' => $event_id, 'vendor_id' => $vendor_id]);
+        return view("vendor.event.link", ["vendors" => $vendors, 'event' => $event, 'event_id' => $event_id, 'vendor_id' => $vendor_id]);
     }
 
     public function link_save(Request $request)

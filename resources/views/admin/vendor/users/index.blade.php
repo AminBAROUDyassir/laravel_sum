@@ -79,7 +79,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form method="get" action="{{url('/vendor/user/add')}}">
+        <form method="get" action="{{url('/admin/vendor/user/add')}}">
           <input type="submit" value="Add user"  name="add" class="btn btn-primary">
         </form>
 
@@ -128,11 +128,11 @@
                                                         Action
                                                       </button>
                                                       <ul class="dropdown-menu">
-                                                        <li class="dropdown-item"><a href="{{url('/vendor/user/edit/'.$user->user_id)}}">Edit</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/vendor/user/delete/'.$user->user_id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/vendor/user/activate/'.$user->user_id)}}">Activate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/user/edit/'.$user->user_id)}}">Edit</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/user/delete/'.$user->user_id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/user/activate/'.$user->user_id)}}">Activate</a></li>
                                                         <li class="dropdown-divider"></li>
-                                                        <li class="dropdown-item"><a href="{{url('/vendor/user/desactivate/'.$user->user_id)}}">Desactivate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/user/desactivate/'.$user->user_id)}}">Desactivate</a></li>
                                                       </ul>
                                                     </div>
 

@@ -9,13 +9,13 @@ use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CouponController extends Controller
+class VendorCouponController extends Controller
 {
     public function edit($id)
     {
 
         $coupon = Coupon::find($id);
-        return view('coupon.edit', ["coupon" => $coupon, "coupon_id" => $id]);
+        return view('vendor.coupon.edit', ["coupon" => $coupon, "coupon_id" => $id]);
 
     }
 
@@ -31,11 +31,14 @@ class CouponController extends Controller
             $event = Event::where('event_id', $coupon->event_id)->first();
             $event->picture_event = Helper::get_url_picture($event->picture_event, "/uploads/");
 
+            $event->picture_path = Helper::get_path_picture($event->picture_event, "/uploads/");
+
             $details = [
                 'title' => 'Mail from ItSolutionStuff.com',
                 'body' => $event->message_event,
                 'picture' => $event->picture_event,
                 'barcode' => $coupon->code,
+                'path' => $event->picture_path,
             ];
 
             info($details);
@@ -57,7 +60,7 @@ class CouponController extends Controller
 
             //dd("Email is Sent.");
 
-            return redirect()->route('coupons', ['id' => $coupon->event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $coupon->event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -71,7 +74,7 @@ class CouponController extends Controller
 
         try {
             $coupon = Coupon::where('id', $id)->delete();
-            return redirect()->route('coupons', ['id' => $event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -89,7 +92,7 @@ class CouponController extends Controller
             $coupon->activated_date = now();
             $coupon->status = 1;
             $coupon->save();
-            return redirect()->route('coupons', ['id' => $event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -104,7 +107,7 @@ class CouponController extends Controller
             $coupon->payed = 0;
             $coupon->payed_date = null;
             $coupon->save();
-            return redirect()->route('coupons', ['id' => $event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -119,7 +122,7 @@ class CouponController extends Controller
             $coupon->payed = 1;
             $coupon->payed_date = now();
             $coupon->save();
-            return redirect()->route('coupons', ['id' => $event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -136,7 +139,7 @@ class CouponController extends Controller
             $coupon->activated_date = now();
             $coupon->status = 0;
             $coupon->save();
-            return redirect()->route('coupons', ['id' => $event_id]);
+            return redirect()->route('vendor_coupons', ['id' => $event_id]);
         } catch (Exception $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -167,7 +170,7 @@ class CouponController extends Controller
 
         $coupons = Coupon::where('event_id', $event_id)->get();
 
-        return view("event.coupon", ["coupons" => $coupons]);
+        return view("vendor.event.coupon", ["coupons" => $coupons]);
 
     }
 

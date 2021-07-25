@@ -51,14 +51,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{{url('/vendor/add')}}" > 
+                    <form method="post" enctype="multipart/form-data" action="{{url('/admin/vendor/user/add')}}" > 
                         {{csrf_field()}}
                     @if($new ==false)
                             <input type="hidden" class="form-control" name="user_id" id="nuser_idame" value="{{$user_id}}">
                     @endif
                         <div class="form-group">
                             <label for="name">User name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$vendor->name}}" required placeholder="User name">
+                            <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}" required placeholder="User name">
                             
                         </div>
 
@@ -87,28 +87,28 @@
 
                         <div class="form-group">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname" value="{{$vendor->firstname}}"  required placeholder="User First name">
+                            <input type="text" class="form-control" name="firstname" id="firstname" value="{{$user->firstname}}"  required placeholder="User First name">
                             
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last name</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" value="{{$vendor->lastname}}"  required placeholder="User Last name">
+                            <input type="text" class="form-control" name="lastname" id="lastname" value="{{$user->lastname}}"  required placeholder="User Last name">
                             
                         </div>
                         <div class="form-group">
                             <label for="email">Email address <font color="red">(*)</font></label>
-                            <input type="email" class="form-control" name="email" id="email" value="{{$vendor->email}}"  required placeholder="User Email">
+                            <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}"  required placeholder="User Email">
                             
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" id="address" value="{{$vendor->address}}" required placeholder="User address">
+                            <input type="text" class="form-control" name="address" id="address" value="{{$user->address}}" required placeholder="User address">
                             
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="phone" class="form-control" name="phone" id="phone" value="{{$vendor->phone}}" required placeholder="User phone">
+                            <input type="phone" class="form-control" name="phone" id="phone" value="{{$user->phone}}" required placeholder="User phone">
                             
                         </div>
                         

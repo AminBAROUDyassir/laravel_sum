@@ -26,4 +26,20 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/coupon/get/{code}', 'CouponController@get_coupon');
     Route::post('/coupon/update', 'CouponController@update_coupon');
 
+    // Partie statistiques
+    Route::get('/recent_log_events', 'LogEventController@recent_log_events');
+    Route::get('/recent_add_product', 'LogEventController@recent_add_product');
+    Route::get('/recent_add_users', 'LogEventController@recent_add_users');
+    Route::get('/monthly_products', 'LogEventController@monthly_products');
+    Route::get('/client_nbr', 'LogEventController@client_nbr');
+    Route::get('/vendor_nbr', 'LogEventController@vendor_nbr');
+    Route::get('/vendor_users_nbr', 'LogEventController@vendor_users_nbr');
+    Route::get('/product_nbr', 'LogEventController@product_nbr');
+    Route::get('/product_selled_nbr', 'LogEventController@product_selled_nbr');
+    Route::get('/product_selled_not_activated_nbr', 'LogEventController@product_selled_not_activated_nbr');
+    Route::get('/product_scanned_after_expiration', 'LogEventController@product_scanned_after_expiration');
+    Route::get('/aging_of_products', 'LogEventController@aging_of_products');
+    Route::get('/nbr_product_created_by_market', 'LogEventController@nbr_product_created_by_market');
+    Route::get('/nbr_product_created_by_app', 'LogEventController@nbr_product_created_by_app');
+
 });

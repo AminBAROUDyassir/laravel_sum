@@ -2,12 +2,10 @@
 
 @section('content')
 
-
-
 <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Add new coupon</h3>
+        <h3 class="card-title">Add new Vendor</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -17,10 +15,13 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form method="get" action="{{url('/coupon/add/')}}">
-          <input type="submit" value="Add new Coupon"  name="add" class="btn btn-primary">
+        <form method="get" action="{{url('/admin/vendor/add')}}">
+          <input type="submit" value="Add vendor"  name="add" class="btn btn-primary">
         </form>
 
+        
+
+        
       </div>
       <!-- /.card-body -->
     </div>
@@ -32,51 +33,32 @@
         <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Liste Coupons</div>
+                        <div class="card-header">Liste Vendors</div>
 
                         <div class="card-body">
                         <table id="users" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                <th>Coupon code</th>
-                                
-                                <th>Coupon send to  </th>
-                                <th>Coupon status</th>
-                                <th>Activated by</th>
-                                <th>Activation date</th>
-                                <th>Payed</th>
-                                <th>Activation date</th>
+                                <th>Vendor</th>
+                                <th>Liste Users</th>
+                                <th>Email</th>
+                                <th>phone</th>
+                                <th>Activated</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($coupons as $coupon)
+                                @foreach($vendors as $user)
                                 <tr>
-                                    <td><a href="{{url('/coupon/edit/'.$coupon->id)}}">{{$coupon->code}}</a></td>
-                                    
-@if($coupon->email=="")
-<td><a href="{{url('/coupon/edit/'.$coupon->id)}}">Send To</a></td>
-@else
-<td>{{$coupon->email}}</td>
-@endif
-                                    
-                                    
-                                    @if($coupon->status == 0)
+                                <td>{{$user->firstname}} {{$user->lastname}}</td>
+                                    <td><a href="{{url('/admin/vendor/users/'.$user->user_id)}}">List users</a></td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    @if($user->status == 0)
                                     <td><span class="right badge badge-danger">No</span></td>
                                     @else
                                     <td><span class="right badge badge-success">Activated</span></td>
                                     @endif
-
-                                    <td>{{$coupon->activated_by}}</td>
-                                    <td>{{$coupon->activated_date}}</td>
-
-                                    @if($coupon->payed == 0)
-                                    <td><span class="right badge badge-danger">Not Payed</span></td>
-                                    @else
-                                    <td><span class="right badge badge-success">Payed</span></td>
-                                    @endif
-                                    <td>{{$coupon->payed_date}}</td>
-
                                     <td>
                                             <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -84,13 +66,11 @@
                                                         Action
                                                       </button>
                                                       <ul class="dropdown-menu">
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/pay/'.$coupon->id)}}">Pay</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/edit/'.$coupon->id)}}">Edit</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/delete/'.$coupon->id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/activate/'.$coupon->id)}}">Activate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/edit/'.$user->user_id)}}">Edit</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/delete/'.$user->user_id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/activate/'.$user->user_id)}}">Activate</a></li>
                                                         <li class="dropdown-divider"></li>
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/desactivate/'.$coupon->id)}}">Desactivate</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/coupon/notpay/'.$coupon->id)}}">Not Pay</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/admin/vendor/desactivate/'.$user->user_id)}}">Desactivate</a></li>
                                                       </ul>
                                                     </div>
 

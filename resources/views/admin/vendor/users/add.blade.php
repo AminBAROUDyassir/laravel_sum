@@ -1,4 +1,4 @@
-@extends('layouts.vendor')
+@extends('layouts.lte')
 
 @section('content')
 <div class="container">
@@ -51,14 +51,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{{url('/vendor/user/add')}}" > 
+                    <form method="post" enctype="multipart/form-data" action="{{url('/admin/vendor/user/add')}}" > 
                         {{csrf_field()}}
                     @if($new ==false)
-                            <input type="hidden" class="form-control" name="user_id" id="nuser_idame" value="{{$user_id}}">
+                            <input type="text" class="form-control" name="user_id" id="nuser_idame" value="{{$user_id}}">
                     @endif
                         <div class="form-group">
                             <label for="name">User name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}" required placeholder="User name">
+                            <input type="text" class="form-control" name="name" id="name" value="" required placeholder="User name">
                             
                         </div>
 
@@ -66,7 +66,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -80,35 +80,35 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname" value="{{$user->firstname}}"  required placeholder="User First name">
+                            <input type="text" class="form-control" name="firstname" id="firstname" value=""  required placeholder="User First name">
                             
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last name</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" value="{{$user->lastname}}"  required placeholder="User Last name">
+                            <input type="text" class="form-control" name="lastname" id="lastname" value=""  required placeholder="User Last name">
                             
                         </div>
                         <div class="form-group">
                             <label for="email">Email address <font color="red">(*)</font></label>
-                            <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}"  required placeholder="User Email">
+                            <input type="email" class="form-control" name="email" id="email" value=""  required placeholder="User Email">
                             
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" id="address" value="{{$user->address}}" required placeholder="User address">
+                            <input type="text" class="form-control" name="address" id="address" value=""  required placeholder="User address">
                             
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="phone" class="form-control" name="phone" id="phone" value="{{$user->phone}}" required placeholder="User phone">
+                            <input type="phone" class="form-control" name="phone" id="phone" value=""  required placeholder="User phone">
                             
                         </div>
                         
@@ -131,7 +131,8 @@ $('#submit').on('click',function(){
     var err = '';
  
         var name = $("#name").val();
-
+        var password = $("#password").val();
+        var password2 = $("#password-confirm").val();
         var first_name = $("#firstname").val();
         var last_name = $("#lastname").val();
         var email = $("#email").val();
@@ -143,7 +144,14 @@ $('#submit').on('click',function(){
 
             err = "Please fill the name field.";
         }
+        if (password == '') {
 
+        err = "Please fill the password field.";
+        }
+        if (password2 == '') {
+
+        err = "Please fill the password confirmation field.";
+        }
         if(password != password2){
             err = "Please make sure that you have enter the some password .";
         }

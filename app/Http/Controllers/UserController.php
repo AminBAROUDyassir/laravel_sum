@@ -6,7 +6,7 @@ class UserController extends Controller
 {
     public function get_users()
     {
-        $url = "https://staging-market.yassir.io/api/4.0/orders/192";
+        $url = "https://staging-market.yassir.io/api/4.0/yassirpay_history/228";
 
         //$token = base64_encode("amin.baroud@yassir.io:QbT227QtJBUq4wg6xRMR6nL344OF85sd");
         $token = base64_encode("hani.cherif@yassir.io:a97J1i54KmBVdlZ4ko8e0q6MgPc73XY0");

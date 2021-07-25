@@ -1,4 +1,4 @@
-@extends('layouts.lte')
+@extends('layouts.vendor')
 
 @section('content')
 <div class="container">
@@ -53,39 +53,34 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data" action="{{url('/event/add')}}" > 
                         {{csrf_field()}}
-                        
-                        
-                    <input type="hidden" class="form-control" name="event_id" id="event_id" value="{{$event_id}}"  >
 
                         <div class="form-group">
                             <label for="name">Event Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$event->name}}" required placeholder="Event name">
+                            <input type="text" class="form-control" name="name" id="name" value="" required placeholder="Event name">
                             
                         </div>
                    
                         <div class="form-group">
                             <label for="name">Event Message</label>
 
-                            <textarea id="message_event" name="message_event" class="form-control" required rows="4" cols="50" placeholder="Event Message">{{$event->message_event}}</textarea>
+                            <textarea id="message_event" name="message_event" class="form-control" required rows="4" cols="50" placeholder="Event Message"></textarea>
                             
                         </div>
 
                         <div class="form-group">
-                            
-                            <label for="firstname">Picture Event : </label>
-                            <a href="{{$event->picture_event}}"><img src = "{{$event->picture_event}}" height="50"></a>
-                            <input type="file" class="form-control" name="picture_event" id="picture_event" value="{{$event->picture_event}}"  required placeholder="Select an event picture">
+                            <label for="firstname">Picture Event</label>
+                            <input type="file" class="form-control" name="picture_event" id="picture_event" value=""  required placeholder="Select an event picture">
                             
                         </div>
 
                         <div class="form-group">
-                            <label for="firstname">Date Event : </label>
-                            <input type="date" class="form-control" name="date_event" id="date_event" value="{{$event->date_event}}"  required placeholder="Select a date">
+                            <label for="firstname">Date Event</label>
+                            <input type="date" class="form-control" name="date_event" id="date_event" value=""  required placeholder="Select a date">
                             
                         </div>
                         <div class="form-group">
                             <label for="lastname">Number of coupons</label>
-                            <input type="number" class="form-control" name="nbr" id="nbr" value="{{$event->nbr}}"  required placeholder="Number of coupons">
+                            <input type="number" class="form-control" name="nbr" id="nbr" value=""  required placeholder="Number of coupons">
                             
                         </div>
                         

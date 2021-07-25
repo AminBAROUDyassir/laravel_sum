@@ -1,4 +1,4 @@
-@extends('layouts.lte')
+@extends('layouts.vendor')
 
 @section('content')
 <div class="container">

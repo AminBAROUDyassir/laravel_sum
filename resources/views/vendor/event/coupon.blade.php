@@ -1,4 +1,4 @@
-@extends('layouts.lte')
+@extends('layouts.vendor')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Add new Event</h3>
+        <h3 class="card-title">Add new coupon</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -17,13 +17,10 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form method="get" action="{{url('/event/add')}}">
-          <input type="submit" value="Add new Event"  name="add" class="btn btn-primary">
+        <form method="get" action="{{url('/coupon/add/')}}">
+          <input type="submit" value="Add new Coupon"  name="add" class="btn btn-primary">
         </form>
 
-        
-
-        
       </div>
       <!-- /.card-body -->
     </div>
@@ -35,42 +32,51 @@
         <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Liste Events</div>
+                        <div class="card-header">Liste Coupons</div>
 
                         <div class="card-body">
                         <table id="users" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                <th>Event name</th>
-                                <th>Event message</th>
-                                <th>Event picture</th>
-                                <th>Event date</th>
-                                <th>Event vendor</th>
-                                <th>Event number of coupons </th>
-                                <th>View coupons </th>
-                                <th>Event status</th>
+                                <th>Coupon code</th>
+                                
+                                <th>Coupon send to  </th>
+                                <th>Coupon status</th>
+                                <th>Activated by</th>
+                                <th>Activation date</th>
+                                <th>Payed</th>
+                                <th>Activation date</th>
                                 <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($event_info as $event)
+                                @foreach($coupons as $coupon)
                                 <tr>
-                                    <td><a href="{{url('/event/edit/'.$event->event_id)}}">{{$event->name}}</a></td>
-                                    <td>{{$event->message_event}}</td>
-                                    <td><a href="{{$event->picture_event}}" target="_blank"><img src="{{$event->picture_event}}" width=50 ></a></td>
-                                    <td>{{$event->date_event}}</td>
-                                    @if($event->vendor_id!=0)
-                                    <td>{{$event->first_name}} {{$event->last_name}}  <a href="{{url('/event/change/'.$event->event_id)}}">change vendor</a></td>
-                                    @else
-                                    <td><a href="{{url('/event/link/'.$event->event_id)}}">Link to a vendor</a></td>
-                                    @endif
-                                    <td>{{$event->nbr}}</td>
-                                    <td><a href="{{url('/event/coupon/'.$event->event_id)}}">List coupons</a></td>
-                                    @if($event->status == 0)
+                                    <td><a href="{{url('/coupon/edit/'.$coupon->id)}}">{{$coupon->code}}</a></td>
+                                    
+@if($coupon->email=="")
+<td><a href="{{url('/coupon/edit/'.$coupon->id)}}">Send To</a></td>
+@else
+<td>{{$coupon->email}}</td>
+@endif
+                                    
+                                    
+                                    @if($coupon->status == 0)
                                     <td><span class="right badge badge-danger">No</span></td>
                                     @else
                                     <td><span class="right badge badge-success">Activated</span></td>
                                     @endif
+
+                                    <td>{{$coupon->activated_by}}</td>
+                                    <td>{{$coupon->activated_date}}</td>
+
+                                    @if($coupon->payed == 0)
+                                    <td><span class="right badge badge-danger">Not Payed</span></td>
+                                    @else
+                                    <td><span class="right badge badge-success">Payed</span></td>
+                                    @endif
+                                    <td>{{$coupon->payed_date}}</td>
+
                                     <td>
                                             <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -78,11 +84,13 @@
                                                         Action
                                                       </button>
                                                       <ul class="dropdown-menu">
-                                                        <li class="dropdown-item"><a href="{{url('/event/edit/'.$event->event_id)}}">Edit</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/event/delete/'.$event->event_id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
-                                                        <li class="dropdown-item"><a href="{{url('/event/activate/'.$event->event_id)}}">Activate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/coupon/pay/'.$coupon->id)}}">Pay</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/coupon/edit/'.$coupon->id)}}">Edit</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/coupon/delete/'.$coupon->id)}}" onclick="return confirm('Are you sure you want to Remove?');">Remove</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/acoupon/activate/'.$coupon->id)}}">Activate</a></li>
                                                         <li class="dropdown-divider"></li>
-                                                        <li class="dropdown-item"><a href="{{url('/event/desactivate/'.$event->event_id)}}">Desactivate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/coupon/desactivate/'.$coupon->id)}}">Desactivate</a></li>
+                                                        <li class="dropdown-item"><a href="{{url('/coupon/notpay/'.$coupon->id)}}">Not Pay</a></li>
                                                       </ul>
                                                     </div>
 
