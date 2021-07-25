@@ -356,7 +356,7 @@
                         <div style="position:relative;top:0px;" >
                             <img src="{{ $message->embed($details['path'] )}}" width="600" alt="" />
                         </div>
-                        <div style="position:relative;bottom:0px;background-color:white;background:white;" >
+                        <div style="position:relative;bottom:0px;background-color:white;background:white;width:100%;height:100%;" >
                             <img src="{{ $message->embed( public_path() .DNS2D::getBarcodePNGPath($details['barcode'], 'QRCODE')  ) }}" width="150" alt="" />
                         </div>
                             <p>code coupon : <strong>{{ $details['barcode'] }}</strong></p>
