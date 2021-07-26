@@ -34,6 +34,8 @@ class AdminCouponController extends Controller
 
             $details = [
                 'title' => 'Mail from ItSolutionStuff.com',
+                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+                'name' => $event->name,
                 'body' => $event->message_event,
                 'picture' => $event->picture_event,
                 'barcode' => $coupon->code,

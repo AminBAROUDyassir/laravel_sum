@@ -31,7 +31,8 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)
+        return $this->from($address = $this->details->address, $name = $this->details->name)
+            ->subject($this->subject)
             ->view('email.SendCoupon');
     }
 }
