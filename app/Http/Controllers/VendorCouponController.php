@@ -34,7 +34,7 @@ class VendorCouponController extends Controller
             $event->picture_path = Helper::get_path_picture($event->picture_event, "/uploads/");
 
             $details = [
-                'title' => 'Mail from ItSolutionStuff.com',
+                'title' => $event->name,
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
                 'name' => $event->name,
                 'body' => $event->message_event,
@@ -44,7 +44,7 @@ class VendorCouponController extends Controller
             ];
 
             info($details);
-            $subject = "For the event of " . $event->name;
+            $subject = "For the event of : " . $event->name;
 
             if (isset($request->email)) {
                 \Mail::to($email)->send(new SendMail($details, $subject));
