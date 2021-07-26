@@ -56,6 +56,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/event/coupon/{id}', 'AdminCouponController@coupon')->name('coupons');
 
+    Route::get('/coupon/add/{id}', 'AdminCouponController@add');
+
     Route::get('/coupon/pay/{id}', 'AdminCouponController@pay');
     Route::get('/coupon/notpay/{id}', 'AdminCouponController@notpay');
     Route::get('/coupon/edit/{id}', 'AdminCouponController@edit');
@@ -93,6 +95,8 @@ Route::middleware('vendor')->group(function () {
     Route::get('/event/desactivate/{id}', 'VendorEventController@desactivate');
 
     Route::get('/event/coupon/{id}', 'VendorCouponController@coupon')->name('vendor_coupons');
+
+    Route::get('/coupon/add/{id}', 'VendorCouponController@add');
 
     Route::get('/coupon/pay/{id}', 'VendorCouponController@pay');
     Route::get('/coupon/notpay/{id}', 'VendorCouponController@notpay');

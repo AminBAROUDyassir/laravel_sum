@@ -68,6 +68,28 @@ class VendorCouponController extends Controller
         }
 
     }
+    public function add($event_id)
+    {
+
+        $event = Event::where('event_id', $event_id)->first();
+
+        $coupons = Coupon::where('event_id', $event_id)->get();
+
+        $Coupon = new Coupon();
+        $Coupon->event_id = $event_id;
+        $Coupon->code = "YMC-" . rand();
+        $Coupon->status = 0;
+        $Coupon->save();
+
+        $coupons = Coupon::where('event_id', $event_id)->get();
+        $event->nbr = count($coupons);
+        $event->coupon = 1;
+        $event->save();
+        \Session::put('event_id', $event_id);
+        return redirect()->back();
+        return view("vendor.event.coupon", ["event_id" => $event_id, "coupons" => $coupons]);
+
+    }
 
     public function delete($id)
     {

@@ -17,9 +17,9 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <form method="get" action="{{url('/admin/coupon/add/')}}">
+        <a href="{{url('admin/coupon/add/')}}/{{ $event_id ?? '' }}">
           <input type="submit" value="Add new Coupon"  name="add" class="btn btn-primary">
-        </form>
+        </a>
 
       </div>
       <!-- /.card-body -->
