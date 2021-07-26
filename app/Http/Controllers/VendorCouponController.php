@@ -42,7 +42,7 @@ class VendorCouponController extends Controller
             ];
 
             info($details);
-            $subject = "For the event of ";
+            $subject = "For the event of " . $event->name;
 
             if (isset($request->email)) {
                 \Mail::to($email)->send(new SendMail($details, $subject));
