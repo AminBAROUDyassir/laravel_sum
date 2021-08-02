@@ -23,8 +23,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
     Route::get('users', 'AuthController@user');
 
-    Route::get('/coupon/get/{code}', 'CouponController@get_coupon');
-    Route::post('/coupon/update', 'CouponController@update_coupon');
+    Route::get('/coupon/get/{code}', 'AdminCouponController@get_coupon');
+    Route::post('/coupon/update', 'AdminCouponController@update_coupon');
 
     // Partie statistiques
     Route::get('/recent_log_events', 'LogEventController@recent_log_events');
