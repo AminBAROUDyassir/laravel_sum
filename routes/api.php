@@ -42,4 +42,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/nbr_product_created_by_market', 'LogEventController@nbr_product_created_by_market');
     Route::get('/nbr_product_created_by_app', 'LogEventController@nbr_product_created_by_app');
 
+    Route::post('/coupon/get_number', 'OtherController@get_number');
+
 });
