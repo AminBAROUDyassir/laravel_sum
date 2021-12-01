@@ -18,9 +18,8 @@ Route::group([
 ], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
+    Route::post('get_number', 'OtherController@get_number');
 });
-
-Route::post('/coupon/get_number', 'OtherController@get_number');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
