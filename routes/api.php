@@ -23,6 +23,9 @@ Route::group([
 
 Route::post('get_number', 'OtherController@get_number');
 
+Route::post('adjust', 'OtherController@adjuts_data_post');
+Route::get('adjust', 'OtherController@adjuts_data_get');
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'AuthController@logout');
     Route::get('users', 'AuthController@user');
