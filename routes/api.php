@@ -21,6 +21,9 @@ Route::group([
 
 });
 
+Route::get('get_code_bar', 'BarcodeController@get_code_bar');
+Route::get('get_code_bar_text', 'BarcodeController@get_code_bar_text');
+
 Route::post('get_number', 'OtherController@get_number');
 
 Route::post('adjust', 'OtherController@adjuts_data_post');
